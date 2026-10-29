@@ -1,3 +1,4 @@
+
 from fastapi import APIRouter, HTTPException
 
 from models import EmployeeIn
@@ -19,7 +20,28 @@ def list_employees():
 @router.get("/employees/{employee_id}")
 def get_employee(employee_id: str):
     employee = employee_service.get(employee_id)
+
     if not employee:
         raise HTTPException(status_code=404, detail="Employee not found")
 
     return employee
+
+@router.put("/employees/{employee_id}")
+def save_employee(employee_id: str, payload: EmployeeIn):
+    return employee_service.save(
+        employee_id,
+        payload.model_dump(mode="json")
+    )
+
+
+@router.delete("/employees/{employee_id}")
+def delete_employee(employee_id: str):
+    deleted = employee_service.delete(employee_id)
+
+    if not deleted:
+        raise HTTPException(
+            status_code=404,
+            detail="Employee not found"
+        )
+
+    return {"message": "Employee deleted successfully"}
