@@ -27,6 +27,15 @@ class BackendStack(Stack):
             billing_mode=dynamodb.BillingMode.PAY_PER_REQUEST,
             removal_policy=RemovalPolicy.DESTROY)
 
+        table.add_global_secondary_index(
+            index_name="GSI1",
+            partition_key=dynamodb.Attribute(
+                name="GSI1PK", type=dynamodb.AttributeType.STRING
+            ),
+            sort_key=dynamodb.Attribute(
+                name="GSI1SK", type=dynamodb.AttributeType.STRING
+            ))
+
         # Read the ARN the build script stored, resolved at synth time.
         fastapi_layer_arn = ssm.StringParameter.value_for_string_parameter(self, LAYER_ARN_PARAM)
 
