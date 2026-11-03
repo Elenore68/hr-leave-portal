@@ -1,3 +1,4 @@
+
 from datetime import date
 
 from pydantic import BaseModel
@@ -8,4 +9,9 @@ class EmployeeIn(BaseModel):
     department: str
     startDate: date
     role: str = "employee"
-    
+
+
+class LeaveIn(BaseModel):
+    startDate: date
+    endDate: date
+    note: str = ""
