@@ -1,0 +1,413 @@
+[4mINVOKE-AGENT-RUNTIME[24m()                                  [4mINVOKE-AGENT-RUNTIME[24m()
+
+[1mNAME[0m
+       invoke-agent-runtime -
+
+[1mDESCRIPTION[0m
+       Sends  a request to an agent or tool hosted in an Amazon Bedrock Agent-
+       Core Runtime and receives responses in real-time.
+
+       To invoke an agent, you can specify either the AgentCore Runtime ARN or
+       the agent ID with an account ID, and provide a payload containing  your
+       request.  When  you use the agent ID instead of the full ARN, you don't
+       need to URL-encode the identifier. You can optionally specify a  quali-
+       fier to target a specific endpoint of the agent.
+
+       This  operation  supports  streaming responses, allowing you to receive
+       partial responses as they become available. We recommend using  pagina-
+       tion to ensure that the operation returns quickly and successfully when
+       processing large responses.
+
+       For example code, see [4mInvoke[24m [4man[24m [4mAgentCore[24m [4mRuntime[24m [4magent[24m .
+
+       If  you're  integrating your agent with OAuth, you can't use the Amazon
+       Web Services SDK to call [1mInvokeAgentRuntime [22m. Instead, make a HTTPS re-
+       quest to [1mInvokeAgentRuntime [22m. For an example, see [4mAuthenticate[24m [4mand[24m  [4mau-[0m
+       [4mthorize[24m [4mwith[24m [4mInbound[24m [4mAuth[24m [4mand[24m [4mOutbound[24m [4mAuth[24m .
+
+       To  use this operation, you must have the [1mbedrock-agentcore:InvokeAgen-[0m
+       [1mtRuntime [22mpermission. If you are making a call to [1mInvokeAgentRuntime  [22mon
+       behalf  of  a user ID with the [1mX-Amzn-Bedrock-AgentCore-Runtime-User-Id[0m
+       header, You require permissions to both actions  ([1mbedrock-agentcore:In-[0m
+       [1mvokeAgentRuntime [22mand [1mbedrock-agentcore:InvokeAgentRuntimeForUser [22m).
+
+       See also: AWS API Documentation
+
+[1mSYNOPSIS[0m
+            invoke-agent-runtime
+          [--content-type <value>]
+          [--accept <value>]
+          [--mcp-session-id <value>]
+          [--runtime-session-id <value>]
+          [--mcp-protocol-version <value>]
+          [--mcp-method <value>]
+          [--mcp-name <value>]
+          [--runtime-user-id <value>]
+          [--trace-id <value>]
+          [--trace-parent <value>]
+          [--trace-state <value>]
+          [--baggage <value>]
+          --agent-runtime-arn <value>
+          [--qualifier <value>]
+          [--account-id <value>]
+          --payload <value>
+          <outfile>
+          [--debug]
+          [--endpoint-url <value>]
+          [--no-verify-ssl]
+          [--no-paginate]
+          [--output <value>]
+          [--query <value>]
+          [--profile <value>]
+          [--region <value>]
+          [--version <value>]
+          [--color <value>]
+          [--no-sign-request]
+          [--ca-bundle <value>]
+          [--cli-read-timeout <value>]
+          [--cli-connect-timeout <value>]
+          [--cli-binary-format <value>]
+          [--no-cli-pager]
+          [--cli-auto-prompt]
+          [--no-cli-auto-prompt]
+          [--cli-error-format <value>]
+
+[1mOPTIONS[0m
+       [1m--content-type [22m(string)
+          The MIME type of the input data in the payload. This tells the agent
+          runtime how to interpret the payload data. Common values include ap-
+          plication/json for JSON data.
+
+          Constraints:
+
+          +o min: [1m1[0m
+
+          +o max: [1m256[0m
+
+       [1m--accept [22m(string)
+          The  desired MIME type for the response from the agent runtime. This
+          tells the agent runtime what format to use for  the  response  data.
+          Common values include application/json for JSON data.
+
+          Constraints:
+
+          +o min: [1m1[0m
+
+          +o max: [1m256[0m
+
+       [1m--mcp-session-id [22m(string)
+          The identifier of the MCP session.
+
+          Constraints:
+
+          +o min: [1m1[0m
+
+          +o max: [1m1024[0m
+
+       [1m--runtime-session-id [22m(string)
+          The identifier of the runtime session.
+
+          Constraints:
+
+          +o min: [1m33[0m
+
+          +o max: [1m256[0m
+
+       [1m--mcp-protocol-version [22m(string)
+          The version of the MCP protocol being used.
+
+          Constraints:
+
+          +o min: [1m1[0m
+
+          +o max: [1m1024[0m
+
+       [1m--mcp-method [22m(string)
+          The  MCP  method  being  invoked.  For  example,  [1mtools/call  [22m,  [1mre-[0m
+          [1msources/read [22m, or [1mprompts/get [22m.
+
+          Constraints:
+
+          +o min: [1m1[0m
+
+          +o max: [1m1024[0m
+
+       [1m--mcp-name [22m(string)
+          The name of the MCP resource, tool, or prompt  being  accessed.  The
+          value depends on the method:
+
+          +o [1mtools/call  [22mThe tool name.
+
+          +o [1mresources/read  [22mThe resource URI.
+
+          +o [1mprompts/get  [22mThe prompt name.
+
+          Constraints:
+
+          +o min: [1m1[0m
+
+          +o max: [1m1024[0m
+
+       [1m--runtime-user-id [22m(string)
+          The identifier of the runtime user.
+
+          Constraints:
+
+          +o min: [1m1[0m
+
+          +o max: [1m1024[0m
+
+       [1m--trace-id [22m(string)
+          The trace identifier for request tracking.
+
+          Constraints:
+
+          +o min: [1m0[0m
+
+          +o max: [1m128[0m
+
+       [1m--trace-parent [22m(string)
+          The parent trace information for distributed tracing.
+
+          Constraints:
+
+          +o min: [1m0[0m
+
+          +o max: [1m128[0m
+
+       [1m--trace-state [22m(string)
+          The trace state information for distributed tracing.
+
+          Constraints:
+
+          +o min: [1m0[0m
+
+          +o max: [1m512[0m
+
+       [1m--baggage [22m(string)
+          Additional context information for distributed tracing.
+
+          Constraints:
+
+          +o min: [1m0[0m
+
+          +o max: [1m8192[0m
+
+       [1m--agent-runtime-arn [22m(string) [required]
+          The  identifier  of the agent runtime to invoke. You can specify ei-
+          ther the full Amazon Web Services Resource Name (ARN) or  the  agent
+          ID.  If  you  use  the agent ID, you must also provide the [1maccountId[0m
+          query parameter.
+
+       [1m--qualifier [22m(string)
+          The qualifier to use for the agent runtime. This is an endpoint name
+          that points to a specific version. If not specified, Amazon  Bedrock
+          AgentCore uses the default endpoint of the agent runtime.
+
+       [1m--account-id [22m(string)
+          The identifier of the Amazon Web Services account for the agent run-
+          time  resource. This parameter is required when you specify an agent
+          ID instead of the full ARN for [1magentRuntimeArn [22m.
+
+          Constraints:
+
+          +o pattern: [1m[0-9]{12}[0m
+
+       [1m--payload [22m(blob) [required]
+          The input data to send to the agent runtime. The format of this data
+          depends on the specific agent configuration and must match the spec-
+          ified content type. For most agents, this is a JSON object  contain-
+          ing the user's request.
+
+          Constraints:
+
+          +o min: [1m0[0m
+
+          +o max: [1m100000000[0m
+
+       [1moutfile [22m(string) [required] Filename where the content will be saved
+
+[1mGLOBAL OPTIONS[0m
+       [1m--debug [22m(boolean)
+
+       Turn on debug logging.
+
+       [1m--endpoint-url [22m(string)
+
+       Override command's default URL with the given URL.
+
+       [1m--no-verify-ssl [22m(boolean)
+
+       By  default, the AWS CLI uses SSL when communicating with AWS services.
+       For each SSL connection, the AWS CLI will verify SSL certificates. This
+       option overrides the default behavior of verifying SSL certificates.
+
+       [1m--no-paginate [22m(boolean)
+
+       Disable automatic pagination. If automatic pagination is disabled,  the
+       AWS CLI will only make one call, for the first page of results.
+
+       [1m--output [22m(string)
+
+       The formatting style for command output.
+
+       +o json
+
+       +o text
+
+       +o table
+
+       +o yaml
+
+       +o yaml-stream
+
+       +o off
+
+       [1m--query [22m(string)
+
+       A JMESPath query to use in filtering the response data.
+
+       [1m--profile [22m(string)
+
+       Use a specific profile from your credential file.
+
+       [1m--region [22m(string)
+
+       The region to use. Overrides config/env settings.
+
+       [1m--version [22m(string)
+
+       Display the version of this tool.
+
+       [1m--color [22m(string)
+
+       Turn on/off color output.
+
+       +o on
+
+       +o off
+
+       +o auto
+
+       [1m--no-sign-request [22m(boolean)
+
+       Do  not  sign requests. Credentials will not be loaded if this argument
+       is provided.
+
+       [1m--ca-bundle [22m(string)
+
+       The CA certificate bundle to use when verifying SSL certificates. Over-
+       rides config/env settings.
+
+       [1m--cli-read-timeout [22m(int)
+
+       The maximum socket read time in seconds. If the value is set to 0,  the
+       socket  read  will be blocking and not timeout. The default value is 60
+       seconds.
+
+       [1m--cli-connect-timeout [22m(int)
+
+       The maximum socket connect time in seconds. If the value is set  to  0,
+       the  socket connect will be blocking and not timeout. The default value
+       is 60 seconds.
+
+       [1m--cli-binary-format [22m(string)
+
+       The formatting style to be used for binary blobs. The default format is
+       base64. The base64 format expects binary blobs  to  be  provided  as  a
+       base64  encoded string. The raw-in-base64-out format preserves compati-
+       bility with AWS CLI V1 behavior and binary values must be passed liter-
+       ally. When providing contents from a file that map  to  a  binary  blob
+       [1mfileb:// [22mwill always be treated as binary and use the file contents di-
+       rectly  regardless of the [1mcli-binary-format [22msetting. When using [1mfile://[0m
+       the file contents will need to properly formatted  for  the  configured
+       [1mcli-binary-format[22m.
+
+       +o base64
+
+       +o raw-in-base64-out
+
+       [1m--no-cli-pager [22m(boolean)
+
+       Disable cli pager for output.
+
+       [1m--cli-auto-prompt [22m(boolean)
+
+       Automatically prompt for CLI input parameters.
+
+       [1m--no-cli-auto-prompt [22m(boolean)
+
+       Disable automatically prompt for CLI input parameters.
+
+       [1m--cli-error-format [22m(string)
+
+       The formatting style for error output. By default, errors are displayed
+       in enhanced format.
+
+       +o legacy
+
+       +o json
+
+       +o yaml
+
+       +o text
+
+       +o table
+
+       +o enhanced
+
+[1mOUTPUT[0m
+       runtimeSessionId -> (string)
+          The identifier of the runtime session.
+
+          Constraints:
+
+          +o min: [1m1[0m
+
+          +o max: [1m100[0m
+
+          +o pattern: [1m[a-zA-Z0-9][a-zA-Z0-9-_]*[0m
+
+       mcpSessionId -> (string)
+          The identifier of the MCP session.
+
+          Constraints:
+
+          +o min: [1m1[0m
+
+          +o max: [1m100[0m
+
+          +o pattern: [1m[a-zA-Z0-9][a-zA-Z0-9-_]*[0m
+
+       mcpProtocolVersion -> (string)
+          The version of the MCP protocol being used.
+
+       traceId -> (string)
+          The trace identifier for request tracking.
+
+       traceParent -> (string)
+          The parent trace information for distributed tracing.
+
+       traceState -> (string)
+          The trace state information for distributed tracing.
+
+       baggage -> (string)
+          Additional context information for distributed tracing.
+
+       contentType -> (string)
+          The  MIME type of the response data. This indicates how to interpret
+          the response data. Common values include application/json  for  JSON
+          data.
+
+       response -> (streaming blob)
+          The  response  data  from the agent runtime. The format of this data
+          depends on the specific agent configuration and the requested accept
+          type. For most agents, this is a JSON object containing the  agent's
+          response to the user's request.
+
+       statusCode -> (integer)
+          The HTTP status code of the response. A status code of 200 indicates
+          a  successful  operation.  Other status codes indicate various error
+          conditions.
+
+                                                        [4mINVOKE-AGENT-RUNTIME[24m()
