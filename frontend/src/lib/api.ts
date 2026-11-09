@@ -1,6 +1,14 @@
 import { getIdToken } from './auth'
 import { getConfig } from './config'
-import type { Employee, EmployeeInput } from './types'
+import type {
+  Employee,
+  EmployeeInput,
+  HrRequestInput,
+  HrRequestStarted,
+  Leave,
+  LeaveInput,
+  TimeOffRequestInput,
+} from './types'
 
 export class ApiError extends Error {
   status: number
@@ -92,5 +100,33 @@ export function updateEmployee(id: string, input: EmployeeInput): Promise<Employ
 export async function deleteEmployee(id: string): Promise<void> {
   await request<{ message: string }>(`/employees/${encodeURIComponent(id)}`, {
     method: 'DELETE',
+  })
+}
+
+export async function listLeave(employeeId: string): Promise<Leave[]> {
+  const data = await request<{ leave: Leave[] }>(
+    `/employees/${encodeURIComponent(employeeId)}/leave`,
+  )
+  return data.leave
+}
+
+export function createLeave(employeeId: string, input: LeaveInput): Promise<Leave> {
+  return request<Leave>(`/employees/${encodeURIComponent(employeeId)}/leave`, {
+    method: 'POST',
+    body: JSON.stringify(input),
+  })
+}
+
+export function startTimeOffRequest(input: TimeOffRequestInput): Promise<HrRequestStarted> {
+  return request<HrRequestStarted>('/hr-requests/time-off', {
+    method: 'POST',
+    body: JSON.stringify(input),
+  })
+}
+
+export function startHrRequest(input: HrRequestInput): Promise<HrRequestStarted> {
+  return request<HrRequestStarted>('/hr-requests', {
+    method: 'POST',
+    body: JSON.stringify(input),
   })
 }

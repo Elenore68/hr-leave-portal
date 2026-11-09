@@ -6,6 +6,8 @@ import { Layout } from './components/Layout'
 import { ProtectedRoute } from './components/ProtectedRoute'
 import { AssistantPage } from './pages/AssistantPage'
 import { EmployeesPage } from './pages/EmployeesPage'
+import { HrRequestsPage } from './pages/HrRequestsPage'
+import { LeavePage } from './pages/LeavePage'
 import { SignInPage } from './pages/SignInPage'
 
 function UnauthorizedBridge() {
@@ -31,6 +33,8 @@ export default function App() {
           <Route element={<ProtectedRoute />}>
             <Route element={<Layout />}>
               <Route path="/employees" element={<EmployeesPage />} />
+              <Route path="/leave" element={<LeavePage />} />
+              <Route path="/hr-requests" element={<HrRequestsPage />} />
               <Route path="/assistant" element={<AssistantPage />} />
             </Route>
           </Route>

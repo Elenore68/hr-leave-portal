@@ -1,8 +1,12 @@
-from fastapi import FastAPI
+from aws_lambda_powertools import Logger, Tracer
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from mangum import Mangum
 
-from controllers import employee_controller, leave_controller
+from controllers import employee_controller, hr_request_controller, leave_controller
+
+logger = Logger()
+tracer = Tracer()
 
 app = FastAPI(title="HR Leave Portal")
 
@@ -12,5 +16,14 @@ app.add_middleware(
 
 app.include_router(employee_controller.router)
 app.include_router(leave_controller.router)
+app.include_router(hr_request_controller.router)
+
+
+@app.middleware("http")
+async def log_requests(request: Request, call_next):
+    logger.info("request received", method=request.method, path=request.url.path)
+    response = await call_next(request)
+    logger.info("request completed", status_code=response.status_code)
+    return response
 
 lambda_handler = Mangum(app)

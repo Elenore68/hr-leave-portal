@@ -11,6 +11,13 @@ export function initials(email: string | null): string {
   return (letters || '?').toUpperCase()
 }
 
+const NAV = [
+  { to: '/employees', label: 'Employees', testId: 'nav-employees' },
+  { to: '/leave', label: 'Leave', testId: 'nav-leave' },
+  { to: '/hr-requests', label: 'HR Requests', testId: 'nav-hr-requests' },
+  { to: '/assistant', label: 'Assistant', testId: 'nav-assistant' },
+]
+
 const linkClass = ({ isActive }: { isActive: boolean }) =>
   `rounded-full px-4 py-2 text-sm font-medium transition ${
     isActive ? 'bg-primary text-white shadow-glow' : 'text-secondary hover:bg-lavender'
@@ -40,13 +47,12 @@ export function Layout() {
             <span className="font-semibold text-primary">Leave Portal</span>
           </div>
 
-          <div className="hidden items-center gap-2 md:flex">
-            <NavLink to="/employees" className={linkClass} data-testid="nav-employees">
-              Employees
-            </NavLink>
-            <NavLink to="/assistant" className={linkClass} data-testid="nav-assistant">
-              Assistant
-            </NavLink>
+          <div className="hidden items-center gap-1 md:flex">
+            {NAV.map((n) => (
+              <NavLink key={n.to} to={n.to} className={linkClass} data-testid={n.testId}>
+                {n.label}
+              </NavLink>
+            ))}
           </div>
 
           <div className="hidden items-center gap-3 md:flex">
@@ -80,12 +86,11 @@ export function Layout() {
 
         {open && (
           <div id="mobile-menu" className="space-y-2 border-t border-white/60 px-4 py-3 md:hidden">
-            <NavLink to="/employees" className={linkClass} onClick={() => setOpen(false)}>
-              Employees
-            </NavLink>
-            <NavLink to="/assistant" className={linkClass} onClick={() => setOpen(false)}>
-              Assistant
-            </NavLink>
+            {NAV.map((n) => (
+              <NavLink key={n.to} to={n.to} className={(s) => `block ${linkClass(s)}`} onClick={() => setOpen(false)}>
+                {n.label}
+              </NavLink>
+            ))}
             <p className="truncate px-4 text-xs text-secondary">{email}</p>
             <Button variant="secondary" onClick={handleSignOut}>
               Sign out

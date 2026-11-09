@@ -8,11 +8,17 @@ from aws_cdk import (
     aws_dynamodb as dynamodb,
     aws_lambda as lambda_,
     aws_ssm as ssm,
+    aws_stepfunctions as sfn,
 )
 from constructs import Construct
 
 # The build script publishes the layer's Version ARN to this SSM parameter.
 LAYER_ARN_PARAM = "/hr-leave-portal/fastapi-layer-arn"
+
+# HR workflow state machine, owned by the separate HrLeavePortalStateMachine stack.
+HR_STATE_MACHINE_ARN = (
+    "arn:aws:states:us-east-1:600189963926:stateMachine:HrStateMachine-M7xdBSrZ8K02"
+)
 
 
 class BackendStack(Stack):
@@ -58,10 +64,21 @@ class BackendStack(Stack):
             layers=[fastapi_layer],
             timeout=Duration.seconds(10),
             memory_size=512,
-            environment={"TABLE_NAME": table.table_name},
+            environment={
+                "TABLE_NAME": table.table_name,
+                "POWERTOOLS_SERVICE_NAME": "hr-api",
+                "POWERTOOLS_LOG_LEVEL": "INFO",
+                "HR_STATE_MACHINE_ARN": HR_STATE_MACHINE_ARN,
+            },
+            tracing=lambda_.Tracing.ACTIVE,
         )
 
         table.grant_read_write_data(api_function)
+
+        hr_state_machine = sfn.StateMachine.from_state_machine_arn(
+            self, "HrStateMachine", HR_STATE_MACHINE_ARN
+        )
+        hr_state_machine.grant_start_execution(api_function)
         self.table = table
         self.user_pool = cognito.UserPool(
             self,
