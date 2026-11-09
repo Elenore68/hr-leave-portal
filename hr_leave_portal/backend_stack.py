@@ -94,6 +94,24 @@ class BackendStack(Stack):
             ),
         )
 
+        # Authorizer and gateway errors (401/403/5xx) bypass the Lambda, so add
+        # CORS headers here; otherwise the browser hides them as network errors.
+        cors_headers = {
+            "Access-Control-Allow-Origin": "'*'",
+            "Access-Control-Allow-Headers": "'Content-Type,Authorization'",
+            "Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE'",
+        }
+        self.api.add_gateway_response(
+            "Default4xx",
+            type=apigw.ResponseType.DEFAULT_4_XX,
+            response_headers=cors_headers,
+        )
+        self.api.add_gateway_response(
+            "Default5xx",
+            type=apigw.ResponseType.DEFAULT_5_XX,
+            response_headers=cors_headers,
+        )
+
         CfnOutput(self, "ApiUrl", value=self.api.url)
         CfnOutput(self, "TableName", value=table.table_name)
         CfnOutput(self, "UserPoolId", value=self.user_pool.user_pool_id)

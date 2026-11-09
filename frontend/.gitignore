@@ -1,0 +1,5 @@
+node_modules
+dist
+*.tsbuildinfo
+# Local-dev runtime config (real IDs); use public/config.example.json as a template
+public/config.json

@@ -1,0 +1,247 @@
+{
+    "stage":  "code-generation",
+    "upstream_ids":  [
+                         "FR1.1",
+                         "FR1.2",
+                         "FR1.3",
+                         "FR1.4",
+                         "FR1.5",
+                         "FR2.1",
+                         "FR2.2",
+                         "FR2.3",
+                         "FR2.4",
+                         "FR2.5",
+                         "FR2.6",
+                         "FR3.1",
+                         "FR3.2",
+                         "FR3.3",
+                         "FR3.4",
+                         "FR3.5",
+                         "FR3.6",
+                         "FR4.1",
+                         "FR4.2",
+                         "FR4.3",
+                         "FR5.1",
+                         "FR5.2",
+                         "FR5.3",
+                         "FR5.4",
+                         "FR5.5",
+                         "FR5.6",
+                         "FR5.7",
+                         "FR6.1",
+                         "FR6.2",
+                         "FR6.3",
+                         "FR6.4",
+                         "FR6.5",
+                         "FR6.6",
+                         "FR6.7",
+                         "NFR1",
+                         "NFR2",
+                         "NFR3",
+                         "NFR4",
+                         "NFR5",
+                         "NFR6"
+                     ],
+    "coverage":  [
+                     {
+                         "id":  "FR1.1",
+                         "status":  "OK",
+                         "target":  "frontend/src/pages/SignInPage.tsx"
+                     },
+                     {
+                         "id":  "FR1.2",
+                         "status":  "OK",
+                         "target":  "frontend/src/lib/auth.ts"
+                     },
+                     {
+                         "id":  "FR1.3",
+                         "status":  "OK",
+                         "target":  "frontend/src/components/ProtectedRoute.tsx"
+                     },
+                     {
+                         "id":  "FR1.4",
+                         "status":  "OK",
+                         "target":  "frontend/src/lib/auth.test.ts"
+                     },
+                     {
+                         "id":  "FR1.5",
+                         "status":  "OK",
+                         "target":  "frontend/src/lib/auth.ts"
+                     },
+                     {
+                         "id":  "FR2.1",
+                         "status":  "OK",
+                         "target":  "frontend/src/pages/EmployeesPage.tsx"
+                     },
+                     {
+                         "id":  "FR2.2",
+                         "status":  "OK",
+                         "target":  "frontend/src/pages/EmployeesPage.tsx"
+                     },
+                     {
+                         "id":  "FR2.3",
+                         "status":  "OK",
+                         "target":  "frontend/src/pages/EmployeesPage.tsx"
+                     },
+                     {
+                         "id":  "FR2.4",
+                         "status":  "OK",
+                         "target":  "frontend/src/pages/EmployeesPage.test.tsx"
+                     },
+                     {
+                         "id":  "FR2.5",
+                         "status":  "OK",
+                         "target":  "frontend/src/lib/api.ts"
+                     },
+                     {
+                         "id":  "FR2.6",
+                         "status":  "OK",
+                         "target":  "frontend/src/lib/api.ts"
+                     },
+                     {
+                         "id":  "FR3.1",
+                         "status":  "OK",
+                         "target":  "frontend/src/pages/AssistantPage.tsx"
+                     },
+                     {
+                         "id":  "FR3.2",
+                         "status":  "OK",
+                         "target":  "frontend/src/lib/agent.ts"
+                     },
+                     {
+                         "id":  "FR3.3",
+                         "status":  "OK",
+                         "target":  "frontend/src/pages/AssistantPage.test.tsx"
+                     },
+                     {
+                         "id":  "FR3.4",
+                         "status":  "OK",
+                         "target":  "frontend/src/lib/agent.ts"
+                     },
+                     {
+                         "id":  "FR3.5",
+                         "status":  "OK",
+                         "target":  "frontend/src/lib/agent.ts"
+                     },
+                     {
+                         "id":  "FR3.6",
+                         "status":  "OK",
+                         "target":  "frontend/src/lib/agent.ts"
+                     },
+                     {
+                         "id":  "FR4.1",
+                         "status":  "OK",
+                         "target":  "frontend/src/components/Layout.tsx"
+                     },
+                     {
+                         "id":  "FR4.2",
+                         "status":  "OK",
+                         "target":  "frontend/src/components/Layout.tsx"
+                     },
+                     {
+                         "id":  "FR4.3",
+                         "status":  "OK",
+                         "target":  "frontend/src/lib/config.ts"
+                     },
+                     {
+                         "id":  "FR5.1",
+                         "status":  "OK",
+                         "target":  "hr_leave_portal/frontend_stack.py"
+                     },
+                     {
+                         "id":  "FR5.2",
+                         "status":  "OK",
+                         "target":  "hr_leave_portal/frontend_stack.py"
+                     },
+                     {
+                         "id":  "FR5.3",
+                         "status":  "OK",
+                         "target":  "hr_leave_portal/frontend_stack.py"
+                     },
+                     {
+                         "id":  "FR5.4",
+                         "status":  "OK",
+                         "target":  "hr_leave_portal/frontend_stack.py"
+                     },
+                     {
+                         "id":  "FR5.5",
+                         "status":  "OK",
+                         "target":  "hr_leave_portal/frontend_stack.py"
+                     },
+                     {
+                         "id":  "FR5.6",
+                         "status":  "OK",
+                         "target":  "hr_leave_portal/frontend_stack.py"
+                     },
+                     {
+                         "id":  "FR5.7",
+                         "status":  "OK",
+                         "target":  "hr_leave_portal/frontend_stack.py"
+                     },
+                     {
+                         "id":  "FR6.1",
+                         "status":  "OK",
+                         "target":  "frontend/tailwind.config.ts"
+                     },
+                     {
+                         "id":  "FR6.2",
+                         "status":  "OK",
+                         "target":  "frontend/tailwind.config.ts"
+                     },
+                     {
+                         "id":  "FR6.3",
+                         "status":  "OK",
+                         "target":  "frontend/tailwind.config.ts"
+                     },
+                     {
+                         "id":  "FR6.4",
+                         "status":  "OK",
+                         "target":  "frontend/tailwind.config.ts"
+                     },
+                     {
+                         "id":  "FR6.5",
+                         "status":  "OK",
+                         "target":  "frontend/tailwind.config.ts"
+                     },
+                     {
+                         "id":  "FR6.6",
+                         "status":  "OK",
+                         "target":  "frontend/tailwind.config.ts"
+                     },
+                     {
+                         "id":  "FR6.7",
+                         "status":  "OK",
+                         "target":  "frontend/tailwind.config.ts"
+                     },
+                     {
+                         "id":  "NFR1",
+                         "status":  "OK",
+                         "target":  "hr_leave_portal/frontend_stack.py"
+                     },
+                     {
+                         "id":  "NFR2",
+                         "status":  "OK",
+                         "target":  "frontend/src/components/Input.tsx"
+                     },
+                     {
+                         "id":  "NFR3",
+                         "status":  "OK",
+                         "target":  "frontend/vite.config.ts"
+                     },
+                     {
+                         "id":  "NFR4",
+                         "status":  "OK",
+                         "target":  "frontend/eslint.config.js"
+                     },
+                     {
+                         "id":  "NFR5",
+                         "status":  "OK",
+                         "target":  "frontend/vite.config.ts"
+                     },
+                     {
+                         "id":  "NFR6",
+                         "status":  "OK",
+                         "target":  "frontend/README.md"
+                     }
+                 ]
+}

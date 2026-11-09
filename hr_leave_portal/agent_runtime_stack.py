@@ -56,6 +56,8 @@ class AgentRuntimeStack(Stack):
             },
         )
 
+        self.agent_runtime = agent_runtime
+
         table.grant_read_write_data(agent_runtime.role)
 
         agent_runtime.add_to_role_policy(

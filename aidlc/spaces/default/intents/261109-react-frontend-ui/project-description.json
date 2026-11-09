@@ -1,0 +1,1 @@
+"Build a React front end for the backend system that already exists in this repo. Also include integration with our AI hrAgent hosted in AgentCore and Create a CDK stack to deploy the new UI."
